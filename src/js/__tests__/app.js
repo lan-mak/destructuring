@@ -20,6 +20,6 @@ test('id действия существует и описание "засекр
   expect(specialInfo(9)).toEqual(special);
 });
 
-test('id действия существует и описание "засекречено"', () => {
+test('id отсутсвует', () => {
   expect(specialInfo(10)).not.toBeTruthy();
 });
