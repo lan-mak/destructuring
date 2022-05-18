@@ -1,25 +1,42 @@
-import specialInfo from '../app';
+import getSpecial from '../app';
 
-test('id действия существует', () => {
-  const special = [
-    8,
-    'Двойной выстрел',
-    'http://...',
-    'Двойной выстрел наносит двойной урон',
+const character = {
+  name: 'Лучник',
+  type: 'Bowman',
+  health: 50,
+  level: 3,
+  attack: 40,
+  defence: 10,
+  special: [
+    {
+      id: 8,
+      name: 'Двойной выстрел',
+      icon: 'http://...',
+      description: 'Двойной выстрел наносит двойной урон',
+    },
+    {
+      id: 9,
+      name: 'Нокаутирующий удар',
+      icon: 'http://...',
+      // <- обратите внимание, описание "засекречено"
+    },
+  ],
+};
+
+test('Функция должна вернуть массив объяектов (id, name, icon, description), description по умолчанию => Описание недоступно)', () => {
+  const testData = [
+    {
+      id: 8,
+      name: 'Двойной выстрел',
+      icon: 'http://...',
+      description: 'Двойной выстрел наносит двойной урон',
+    },
+    {
+      id: 9,
+      name: 'Нокаутирующий удар',
+      icon: 'http://...',
+      description: 'Описание недоступно',
+    },
   ];
-  expect(specialInfo(8)).toEqual(special);
-});
-
-test('id действия существует и описание "засекречено"', () => {
-  const special = [
-    9,
-    'Нокаутирующий удар',
-    'http://...',
-    'Описание недоступно',
-  ];
-  expect(specialInfo(9)).toEqual(special);
-});
-
-test('id отсутсвует', () => {
-  expect(specialInfo(10)).not.toBeTruthy();
+  expect(getSpecial(character)).toEqual(testData);
 });
